@@ -1,5 +1,6 @@
 var game
 var sprite
+var gameOverText
 
 function preload() {
   game.load.image('ship', 'img/ship.png')
@@ -15,9 +16,7 @@ function create() {
 
   game.physics.arcade.enable(sprite)
 
-  game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL
-
-  game.input.onDown.add(goFullscreen, this)
+  sprite.body.collideWorldBounds = true
 }
 
 function update() {
@@ -29,13 +28,10 @@ function update() {
   }
 }
 
-function goFullscreen() {
-  game.scale.startFullScreen()
-}
-
 function gameOver() {
-  var text = game.add.text(game.world.centerX, game.world.centerY, "Gotcha!\nGame Over", { font: "65px Arial", fill: "#ff0044", align: "center" });
-  text.anchor.setTo(0.5, 0.5);
+  gameOverText = game.add.text(game.world.centerX, game.world.centerY, "Gotcha!", { font: "65px Arial", fill: "#ff0044", align: "center" });
+  gameOverText.anchor.setTo(0.5, 0.5);
+  game.paused = true
 }
 
 function render() {
@@ -49,4 +45,7 @@ var state = {
   render: render
 }
 
-game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', state)
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
+game = new Phaser.Game(w, h, Phaser.AUTO, 'phaser-example', state)
