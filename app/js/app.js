@@ -14,6 +14,10 @@ function create() {
   sprite.scale.y = .15
 
   game.physics.arcade.enable(sprite)
+
+  game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL
+
+  game.input.onDown.add(goFullscreen, this)
 }
 
 function update() {
@@ -21,7 +25,17 @@ function update() {
     game.physics.arcade.moveToPointer(sprite, 300)
   } else {
     sprite.body.velocity.set(0)
+    gameOver()
   }
+}
+
+function goFullscreen() {
+  game.scale.startFullScreen()
+}
+
+function gameOver() {
+  var text = game.add.text(game.world.centerX, game.world.centerY, "Gotcha!\nGame Over", { font: "65px Arial", fill: "#ff0044", align: "center" });
+  text.anchor.setTo(0.5, 0.5);
 }
 
 function render() {
