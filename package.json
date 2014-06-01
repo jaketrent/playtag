@@ -1,0 +1,22 @@
+{
+  "name": "playtag",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaketrent/playtag.git"
+  },
+  "author": "jaketrent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaketrent/playtag/issues"
+  },
+  "homepage": "https://github.com/jaketrent/playtag",
+  "dependencies": {
+    "gzippo": "~0.2.0",
+    "express": "~4.4.0"
+  }
+}
